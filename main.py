@@ -13,6 +13,14 @@ from src.datascience.pipeline.model_evaluation_pipeline import (
     ModelEvaluationTrainingPipeline,
 )
 
+from dotenv import load_dotenv
+
+load_dotenv()
+import os
+
+
+print("DEBUG:", os.getenv("MLFLOW_TRACKING_URI"))
+
 STAGE_NAME = "Data Ingestion stage"
 try:
     logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")

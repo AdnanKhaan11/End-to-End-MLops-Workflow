@@ -1,0 +1,40 @@
+stages:
+  data_ingestion:
+    cmd: python src/datascience/pipeline/data_ingestion_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_ingestion_pipeline.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion
+
+  data_validation:
+    cmd: python src/datascience/pipeline/data_validation_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_validation_pipeline.py
+      - artifacts/data_ingestion
+    outs:
+      - artifacts/data_validation
+
+  data_transformation:
+    cmd: python src/datascience/pipeline/data_transformation_pipeline.py
+    deps:
+      - src/datascience/pipeline/data_transformation_pipeline.py
+      - artifacts/data_validation
+    outs:
+      - artifacts/data_transformation
+
+  model_trainer:
+    cmd: python src/datascience/pipeline/model_trainer_pipeline.py
+    deps:
+      - src/datascience/pipeline/model_trainer_pipeline.py
+      - artifacts/data_transformation
+    outs:
+      - artifacts/model_trainer
+
+  model_evaluation:
+    cmd: python src/datascience/pipeline/model_evaluation_pipeline.py
+    deps:
+      - src/datascience/pipeline/model_evaluation_pipeline.py
+      - artifacts/model_trainer
+    outs:
+      - artifacts/model_evaluation

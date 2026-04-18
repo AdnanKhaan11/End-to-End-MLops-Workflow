@@ -1,105 +1,104 @@
-import sys
-import yaml
-import json
 import os
-from ensure import ensure_annoatation
-from pathlib import Path
+import yaml
 from src.datascience import logger
-import pandas as pd
+import json
 import joblib
+from ensure import ensure_annotations
+from box import ConfigBox
+from pathlib import Path
+from typing import Any
 from box.exceptions import BoxValueError
-from box import ConfigBox as config_box
 
 
-@ensure_annoatation
-def read_yaml(yaml_file_path: Path) -> config_box:
-    """
-    this functiona will  read the yaml file and return the
-    content in the form of config box
+@ensure_annotations
+def read_yaml(path_to_yaml: Path) -> ConfigBox:
+    """reads yaml file and returns
+
     Args:
-        output_file (list): list of output file
-        yaml_file (str): yaml file path
+        path_to_yaml (str): path like input
 
-    return config_boc: confib box object
+    Raises:
+        ValueError: if yaml file is empty
+        e: empty file
 
+    Returns:
+        ConfigBox: ConfigBox type
     """
     try:
-        with open(yaml_file_path) as f:
-            content = yaml.safe_load(f)
-            config_box = config_box(content)
-            logger.info(f"yaml file {yaml_file_path} read successfully")
-
-            return config_box
-    except BoxValueError as e:
-        logger.error(f"Error in yaml file {yaml_file_path}: {e}")
-        raise e
+        with open(path_to_yaml) as yaml_file:
+            content = yaml.safe_load(yaml_file)
+            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+            return ConfigBox(content)
+    except BoxValueError:
+        raise ValueError("yaml file is empty")
     except Exception as e:
-        logger.error(f"Error reading yaml file {yaml_file_path}: {e}")
         raise e
+        
 
 
-@ensure_annoatation
-def create_directory(dir_path: list) -> None:
-    """
-    this function will create the directory if it does not exist
+@ensure_annotations
+def create_directories(path_to_directories: list, verbose=True):
+    """create list of directories
+
     Args:
-        dir_path (Path): directory path
-    return None"""
-
-    try:
-        os.makedirs(dir_path, exist_ok=True)
-        logger.info(f"directory {dir_path} created successfully")
-
-    except Exception as e:
-        logger.error(f"Error creating directory {dir_path}: {e}")
-        raise e
-
-
-@ensure_annoatation
-def save_json(json_file_path: Path, content: dict) -> None:
-    """this  function will save the json file
-    args:
-        json_file_path (Path): json file path
-        content (dict): content to be saved in the json file
+        path_to_directories (list): list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
     """
-    try:
-        with open(json_file_path, "w") as f:
-            json.dump(content, f, indent=4)
+    for path in path_to_directories:
+        os.makedirs(path, exist_ok=True)
+        if verbose:
+            logger.info(f"created directory at: {path}")
 
-            logger.info(f"json file {json_file_path} saved successfully")
+@ensure_annotations
+def save_json(path: Path, data: dict):
+    """save json data
 
-    except Exception as e:
-        logger.error(f"Error saving json file {json_file_path}: {e}")
-        raise e
-
-    # load json file and return the content in the form of config box
-
-
-@ensure_annoatation
-def load_json(json_file_path: Path) -> config_box:
-    """this function will load the json file and return  the content in the form of config box"""
-    try:
-        with open(json_file_path) as f:
-            content = json.load(f)
-            config_box = config_box(content)
-            logger.info(f"json file {json_file_path} loaded successfully")
-
-            return config_box
-    except Exception as e:
-        logger.error(f"Error loading json file {json_file_path}: {e}")
-        raise e
-
-
-def save_model(model, model_file_path: Path) -> None:
-    """this function will save the model using joblib
-    args:
-        model: model to be saved
-        model_file_path (Path): model file path
+    Args:
+        path (Path): path to json file
+        data (dict): data to be saved in json file
     """
-    try:
-        joblib.dump(model, model_file_path)
-        logger.info(f"model saved successfully at {model_file_path}")
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
 
-    except Exception as e:
-        logger.error(f"Error saving model at {model_file_path}: {e}")
-        raise e
+    logger.info(f"json file saved at: {path}")
+
+@ensure_annotations
+def load_json(path: Path) -> ConfigBox:
+    """load json files data
+
+    Args:
+        path (Path): path to json file
+
+    Returns:
+        ConfigBox: data as class attributes instead of dict
+    """
+    with open(path) as f:
+        content = json.load(f)
+
+    logger.info(f"json file loaded succesfully from: {path}")
+    return ConfigBox(content)
+
+@ensure_annotations
+def save_bin(data: Any, path: Path):
+    """save binary file
+
+    Args:
+        data (Any): data to be saved as binary
+        path (Path): path to binary file
+    """
+    joblib.dump(value=data, filename=path)
+    logger.info(f"binary file saved at: {path}")
+
+@ensure_annotations
+def load_bin(path: Path) -> Any:
+    """load binary data
+
+    Args:
+        path (Path): path to binary file
+
+    Returns:
+        Any: object stored in the file
+    """
+    data = joblib.load(path)
+    logger.info(f"binary file loaded from: {path}")
+    return data
