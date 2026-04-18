@@ -1,0 +1,65 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+/venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data & Models (tracked by DVC)
+data/raw/
+data/processed/
+models/
+*.pkl
+*.joblib
+
+# MLflow
+mlruns/
+.mlflow/
+
+# Logs
+logs/
+*.log
+
+# DVC
+.dvc/
+.dvcstore/
+
+# Environment variables
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
