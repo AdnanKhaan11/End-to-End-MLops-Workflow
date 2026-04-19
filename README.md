@@ -195,10 +195,12 @@ End-to-End-MLops-Workflow/
 ├── .gitignore
 └── README.md
 ---
+```
 
 ## ⚙️ Installation & Setup
 
 ### 1. Clone Repository
+
 
 ```bash
 
