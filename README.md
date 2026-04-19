@@ -243,7 +243,7 @@ MLFLOW_TRACKING_PASSWORD=<your-token>
 Run the complete pipeline using:
 
 ```bash
-python main.py
+python app.py
 ```
 
 This will execute:
