@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wine Quality Prediction Result</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='results.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-animation">
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+      <div class="gradient-blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="result-wrapper">
+        <!-- Success Animation -->
+        <div class="success-icon">✓</div>
+
+        <!-- Result Header -->
+        <div class="result-header">
+          <h1>Prediction Complete!</h1>
+          <p>Your wine quality score has been analyzed</p>
+        </div>
+
+        <!-- Result Card -->
+        <div class="result-card">
+          <div class="result-content">
+            <div class="prediction-label">Wine Quality Score</div>
+
+            <div class="prediction-value">{{ "%.2f"|format(prediction) }}</div>
+
+            <!-- Quality Rating -->
+            <div class="quality-rating">
+              {% if prediction >= 8 %}
+              <span class="rating-badge excellent">★★★★★ Excellent</span>
+              <p class="rating-text">
+                Outstanding wine with exceptional characteristics
+              </p>
+              {% elif prediction >= 6 %}
+              <span class="rating-badge good">★★★★☆ Good</span>
+              <p class="rating-text">
+                High quality wine with great characteristics
+              </p>
+              {% elif prediction >= 5 %}
+              <span class="rating-badge average">★★★☆☆ Average</span>
+              <p class="rating-text">
+                Standard quality wine with decent characteristics
+              </p>
+              {% else %}
+              <span class="rating-badge poor">★★☆☆☆ Poor</span>
+              <p class="rating-text">Lower quality wine, needs improvement</p>
+              {% endif %}
+            </div>
+
+            <!-- Quality Meter -->
+            <div class="quality-meter">
+              <div class="meter-track">
+                <div
+                  class="meter-fill"
+                  style="width: {{ (prediction / 10) * 100 }}%"
+                ></div>
+              </div>
+              <div class="meter-labels">
+                <span>0</span>
+                <span>5</span>
+                <span>10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quality Insights -->
+        <div class="insights-section">
+          <h3>Quality Factors</h3>
+          <div class="insights-grid">
+            <div class="insight-card">
+              <div class="insight-icon">🍇</div>
+              <div class="insight-text">
+                <h4>Acidity Balance</h4>
+                <p>Analyzed for optimal flavor</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">🍷</div>
+              <div class="insight-text">
+                <h4>Alcohol Content</h4>
+                <p>Measured for quality score</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">⚗️</div>
+              <div class="insight-text">
+                <h4>Chemical Profile</h4>
+                <p>Complete analysis performed</p>
+              </div>
+            </div>
+            <div class="insight-card">
+              <div class="insight-icon">📊</div>
+              <div class="insight-text">
+                <h4>AI Prediction</h4>
+                <p>Machine learning model used</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="/" class="btn btn-primary">
+            <span>← Back to Home</span>
+          </a>
+          <a href="/" class="btn btn-secondary">
+            <span>Predict Another →</span>
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="result-footer">
+          <p>Powered by Advanced Wine Quality Prediction AI</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

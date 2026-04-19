@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error - Wine Quality Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='error.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-animation">
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+      <div class="gradient-blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="error-wrapper">
+        <!-- Error Icon -->
+        <div class="error-icon">⚠</div>
+
+        <!-- Error Header -->
+        <div class="error-header">
+          <h1>Oops! Something Went Wrong</h1>
+          <p>We encountered an error while processing your request</p>
+        </div>
+
+        <!-- Error Card -->
+        <div class="error-card">
+          <div class="error-message">
+            <h3>Error Details</h3>
+            <p class="error-text">{{ error }}</p>
+          </div>
+
+          <!-- Error Solutions -->
+          <div class="solutions-section">
+            <h3>What to check:</h3>
+            <ul class="solutions-list">
+              <li>✓ Make sure all fields are filled with valid numbers</li>
+              <li>✓ Check that values are positive numbers</li>
+              <li>✓ Ensure no special characters are entered</li>
+              <li>✓ Try clearing and re-entering the values</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="/" class="btn btn-primary">
+            <span>← Back to Form</span>
+          </a>
+          <a href="/" class="btn btn-secondary">
+            <span>Start Over</span>
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="error-footer">
+          <p>If the problem persists, please contact support</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Wine Quality Model</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='train.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-animation">
+      <div class="gradient-blob blob-1"></div>
+      <div class="gradient-blob blob-2"></div>
+      <div class="gradient-blob blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="train-wrapper">
+        <!-- Header Section -->
+        <div class="train-header">
+          <div class="header-icon">🤖</div>
+          <h1 class="main-title">Model Training</h1>
+          <p class="subtitle">
+            Train your wine quality prediction model with the latest data
+          </p>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="info-section">
+          <div class="info-card">
+            <div class="info-icon">📚</div>
+            <h3>Training Data</h3>
+            <p>Uses comprehensive wine dataset with 11 chemical properties</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">🧠</div>
+            <h3>ML Algorithm</h3>
+            <p>Advanced machine learning models for accurate predictions</p>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⚡</div>
+            <h3>Performance</h3>
+            <p>Optimized pipeline for fast and reliable results</p>
+          </div>
+        </div>
+
+        <!-- Training Status Section -->
+        <div
+          class="training-section"
+          id="trainingSection"
+          style="display: none"
+        >
+          <div class="training-card">
+            <h2>Training in Progress...</h2>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+              <p class="progress-text"><span id="progressPercent">0</span>%</p>
+            </div>
+
+            <!-- Status Steps -->
+            <div class="status-steps">
+              <div class="step-item active" id="step-1">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Loading Data</h4>
+                  <p>Preparing training dataset...</p>
+                </div>
+              </div>
+
+              <div class="step-item" id="step-2">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Processing Features</h4>
+                  <p>Extracting and scaling features...</p>
+                </div>
+              </div>
+
+              <div class="step-item" id="step-3">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Training Model</h4>
+                  <p>Building and training the model...</p>
+                </div>
+              </div>
+
+              <div class="step-item" id="step-4">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Validating Results</h4>
+                  <p>Evaluating model performance...</p>
+                </div>
+              </div>
+
+              <div class="step-item" id="step-5">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                  <h4>Saving Model</h4>
+                  <p>Persisting the trained model...</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated Loader -->
+            <div class="loader-container">
+              <div class="animated-loader"></div>
+              <p class="loader-text">Training your model...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Initial State Section -->
+        <div class="initial-section" id="initialSection">
+          <div class="action-card">
+            <div class="action-content">
+              <h2>Ready to Train?</h2>
+              <p>
+                Click the button below to start training the wine quality
+                prediction model. This process may take a few minutes.
+              </p>
+
+              <!-- Training Stats -->
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <div class="stat-number">1599</div>
+                  <div class="stat-label">Training Samples</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-number">11</div>
+                  <div class="stat-label">Features</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-number">3-5 min</div>
+                  <div class="stat-label">Estimated Time</div>
+                </div>
+              </div>
+
+              <!-- Info Box -->
+              <div class="warning-box">
+                <span class="warning-icon">ℹ️</span>
+                <p>
+                  The training process will create a new trained model. Keep
+                  this page open until training is complete.
+                </p>
+              </div>
+
+              <!-- Start Button -->
+              <button class="start-train-btn" onclick="startTraining()">
+                <span class="btn-icon">▶️</span>
+                <span class="btn-text">Start Training</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Section -->
+        <div class="success-section" id="successSection" style="display: none">
+          <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h2>Training Complete!</h2>
+            <p>
+              Your wine quality prediction model has been successfully trained.
+            </p>
+
+            <!-- Results -->
+            <div class="results-box">
+              <div class="result-item">
+                <span class="result-label">Status:</span>
+                <span class="result-value success">✓ Successful</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Model:</span>
+                <span class="result-value">Trained & Saved</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Ready for:</span>
+                <span class="result-value">Predictions</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="success-buttons">
+              <a href="/" class="btn btn-primary">
+                <span>← Back to Home</span>
+              </a>
+              <a href="/" class="btn btn-secondary">
+                <span>Make Predictions →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Error Section -->
+        <div class="error-section" id="errorSection" style="display: none">
+          <div class="error-card">
+            <div class="error-icon">✗</div>
+            <h2>Training Failed</h2>
+            <p id="errorMessage">
+              An error occurred during training. Please try again.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="error-buttons">
+              <button class="btn btn-primary" onclick="location.reload()">
+                <span>← Try Again</span>
+              </button>
+              <a href="/" class="btn btn-secondary">
+                <span>Back to Home</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="train-footer">
+          <p>Powered by Advanced Machine Learning Pipeline</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simulate training progress
+      function startTraining() {
+        // Hide initial section and show training section
+        document.getElementById("initialSection").style.display = "none";
+        document.getElementById("trainingSection").style.display = "block";
+
+        // Activate steps progressively
+        let steps = [
+          { duration: 1000, stepId: "step-1" },
+          { duration: 1500, stepId: "step-2" },
+          { duration: 2000, stepId: "step-3" },
+          { duration: 1500, stepId: "step-4" },
+          { duration: 1000, stepId: "step-5" },
+        ];
+
+        let cumulativeTime = 0;
+        let totalTime = steps.reduce((sum, step) => sum + step.duration, 0);
+
+        // Update progress bar
+        steps.forEach((step, index) => {
+          setTimeout(() => {
+            document.getElementById(step.stepId).classList.add("active");
+
+            // Update progress percentage
+            let percentage = Math.min(
+              Math.round((cumulativeTime / totalTime) * 100),
+              95,
+            );
+            document.getElementById("progressPercent").textContent = percentage;
+            document.querySelector(".progress-fill").style.width =
+              percentage + "%";
+
+            cumulativeTime += step.duration;
+          }, cumulativeTime);
+        });
+
+        // Make actual training request
+        setTimeout(() => {
+          makeTrainingRequest();
+        }, cumulativeTime + 500);
+      }
+
+      function makeTrainingRequest() {
+        fetch("/train-execute", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              showSuccess();
+            } else {
+              showError(data.message);
+            }
+          })
+          .catch((error) => {
+            showError("Network error: " + error.message);
+          });
+      }
+
+      function showSuccess() {
+        document.getElementById("trainingSection").style.display = "none";
+        document.getElementById("successSection").style.display = "block";
+
+        // Final progress update
+        document.getElementById("progressPercent").textContent = "100";
+        document.querySelector(".progress-fill").style.width = "100%";
+      }
+
+      function showError(message) {
+        document.getElementById("trainingSection").style.display = "none";
+        document.getElementById("errorSection").style.display = "block";
+        document.getElementById("errorMessage").textContent = message;
+      }
+    </script>
+  </body>
+</html>

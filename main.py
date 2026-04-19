@@ -1,3 +1,15 @@
+import os
+import sys
+
+# Set UTF-8 encoding for Windows console to handle emoji characters
+if sys.platform == "win32":
+    os.environ["PYTHONIOENCODING"] = "utf-8"
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except:
+        pass
+
 from src.datascience import logger
 from src.datascience.pipeline.data_ingestion_pipeline import (
     DataIngestionTrainingPipeline,
@@ -16,7 +28,6 @@ from src.datascience.pipeline.model_evaluation_pipeline import (
 from dotenv import load_dotenv
 
 load_dotenv()
-import os
 
 
 print("DEBUG:", os.getenv("MLFLOW_TRACKING_URI"))

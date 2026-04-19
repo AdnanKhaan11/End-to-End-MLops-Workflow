@@ -138,41 +138,62 @@ Even without running full DVC pipelines, the structure follows **best practices 
 
 ```
 End-to-End-MLops-Workflow/
+End-to-End-MLops-Workflow/
 │
-├── artifacts/
-│   ├── data_ingestion/
-│   ├── data_validation/
-│   ├── data_transformation/
+├── 📂 templates/                    # Flask HTML templates
+│   ├── index.html                   # Home page (prediction form)
+│   ├── train.html                   # Training interface
+│   ├── results.html                 # Prediction results
+│   └── error.html                   # Error pages
+│
+├── 📂 static/                       # CSS & static assets
+│   ├── style.css                    # Home page styling
+│   ├── train.css                    # Training page styling
+│   ├── results.css                  # Results page styling
+│   └── error.css                    # Error page styling
+│
+├── 📂 artifacts/                    # Data & model versioning
+│   ├── data_ingestion/              # Raw data storage
+│   ├── data_validation/             # Validation reports
+│   ├── data_transformation/         # Processed data
 │   │   ├── train.csv
 │   │   └── test.csv
-│   ├── model_trainer/
-│   └── model_evaluation/
+│   ├── model_trainer/               # Trained models
+│   └── model_evaluation/            # Evaluation reports
 │
-├── src/
-│   └── datascience/
-│       ├── components/
+├── 📂 src/
+│   └── 📂 datascience/
+│       ├── 📂 components/           # Core ML logic
 │       │   ├── data_ingestion.py
 │       │   ├── data_validation.py
 │       │   ├── data_transformation.py
 │       │   ├── model_trainer.py
 │       │   └── model_evaluation.py
 │       │
-│       ├── pipeline/
+│       ├── 📂 pipeline/             # Pipeline orchestration
 │       │   ├── data_ingestion_pipeline.py
 │       │   ├── data_validation_pipeline.py
 │       │   ├── data_transformation_pipeline.py
 │       │   ├── model_trainer_pipeline.py
 │       │   └── model_evaluation_pipeline.py
+│       │
+│       ├── config.py                # Configuration management
+│       ├── entity.py                # Data classes
+│       ├── logging.py               # Logging setup
+│       └── __init__.py
 │
-├── config/
-├── params.yaml
-├── schema.yaml
-├── requirements.txt
-├── .env
-├── main.py
+├── 📂 config/                       # Configuration files
+│
+├── 📂 logs/                         # Application logs
+│
+├── app.py                           # 🔴 Flask application (MAIN WEB SERVER)
+├── main.py                          # ML pipeline orchestration
+├── params.yaml                      # Pipeline parameters
+├── schema.yaml                      # Data schema
+├── requirements.txt                 # Dependencies
+├── .env                             # Environment variables
+├── .gitignore
 └── README.md
-```
-
 ---
 
 ## ⚙️ Installation & Setup
@@ -180,7 +201,9 @@ End-to-End-MLops-Workflow/
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/End-to-End-MLops-Workflow.git
+
+git clone https://github.com/AdnanKhaan11/End-to-End-MLops-Workflow.git
+
 cd End-to-End-MLops-Workflow
 ```
 
@@ -322,7 +345,7 @@ You can:
 Software Engineer (AI/ML)
 
 * Email: [adnankhaan2244@gmail.com](mailto:adnankhaan2244@gmail.com)
-* LinkedIn: *(Adnankhan)*
+* LinkedIn: *https://www.linkedin.com/in/adnankhaan11/*
 
 ---
 

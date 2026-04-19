@@ -1,0 +1,660 @@
+/* ============================================
+   WINE QUALITY RESULTS PAGE - LUXURY DESIGN
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============= CSS VARIABLES ============= */
+:root {
+    --primary-wine: #1a1a2e;
+    --accent-gold: #d4af37;
+    --accent-rose: #c41e3a;
+    --light-bg: #f8f6f1;
+    --card-bg: #ffffff;
+    --text-dark: #2c2c2c;
+    --text-light: #666666;
+    --border-color: #e8e3db;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-dark: 0 15px 50px rgba(0, 0, 0, 0.15);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============= BODY & BACKGROUNDS ============= */
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, var(--light-bg) 0%, #faf8f3 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Animated Background Blobs */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: blob-animation 15s infinite ease-in-out;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, var(--accent-rose), var(--accent-gold));
+    top: -10%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(45deg, var(--primary-wine), var(--accent-rose));
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.blob-3 {
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(45deg, var(--accent-gold), var(--accent-rose));
+    top: 40%;
+    right: -3%;
+    animation-delay: 6s;
+}
+
+@keyframes blob-animation {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 30px) scale(0.9);
+    }
+}
+
+/* ============= CONTAINER & LAYOUT ============= */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============= RESULT WRAPPER ============= */
+.result-wrapper {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 50px 45px;
+    box-shadow: var(--shadow-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    animation: result-appear 0.8s ease-out;
+}
+
+@keyframes result-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ============= SUCCESS ICON ============= */
+.success-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, var(--accent-rose), var(--accent-gold));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    font-weight: bold;
+    animation: success-bounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+}
+
+@keyframes success-bounce {
+    0% {
+        transform: scale(0) rotate(-45deg);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* ============= RESULT HEADER ============= */
+.result-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: header-fade-in 0.8s ease-out 0.3s both;
+}
+
+@keyframes header-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--primary-wine);
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--primary-wine) 0%, var(--accent-rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.result-header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ============= RESULT CARD ============= */
+.result-card {
+    background: linear-gradient(135deg, #fafafa 0%, #fcfbf8 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 18px;
+    padding: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    animation: card-slide-in 0.8s ease-out 0.4s both;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes card-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ============= PREDICTION LABEL & VALUE ============= */
+.prediction-label {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.prediction-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-rose) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: value-scale-in 0.8s ease-out 0.5s both;
+    line-height: 1;
+}
+
+@keyframes value-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============= QUALITY RATING ============= */
+.quality-rating {
+    margin: 20px 0;
+    animation: rating-fade-in 0.8s ease-out 0.6s both;
+}
+
+@keyframes rating-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.rating-badge {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.rating-badge.excellent {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.rating-badge.good {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.rating-badge.average {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.rating-badge.poor {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.rating-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* ============= QUALITY METER ============= */
+.quality-meter {
+    margin-top: 25px;
+    animation: meter-fade-in 0.8s ease-out 0.7s both;
+}
+
+@keyframes meter-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.meter-track {
+    width: 100%;
+    height: 8px;
+    background: #e8e3db;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-rose), var(--accent-gold));
+    border-radius: 10px;
+    animation: meter-fill 1.2s ease-out 0.8s both;
+}
+
+@keyframes meter-fill {
+    from {
+        width: 0 !important;
+    }
+}
+
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* ============= INSIGHTS SECTION ============= */
+.insights-section {
+    margin: 40px 0;
+    animation: insights-fade-in 0.8s ease-out 0.8s both;
+}
+
+@keyframes insights-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.insights-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--primary-wine);
+    margin-bottom: 25px;
+    text-align: left;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.insights-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-gold), var(--accent-rose));
+    border-radius: 2px;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.insight-card {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.insight-card:hover {
+    background: white;
+    border-color: var(--accent-gold);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-light);
+}
+
+.insight-icon {
+    font-size: 2rem;
+    min-width: 50px;
+}
+
+.insight-text h4 {
+    font-size: 1rem;
+    color: var(--primary-wine);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.insight-text p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 300;
+}
+
+/* ============= ACTION BUTTONS ============= */
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 40px 0;
+    animation: buttons-fade-in 0.8s ease-out 0.9s both;
+}
+
+@keyframes buttons-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn {
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-wine) 0%, var(--accent-rose) 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(196, 30, 58, 0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(196, 30, 58, 0.35);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-wine);
+    border: 2px solid var(--primary-wine);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-wine);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ============= RESULT FOOTER ============= */
+.result-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    animation: footer-fade-in 0.8s ease-out 1s both;
+}
+
+@keyframes footer-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.result-footer p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+/* ============= RESPONSIVE DESIGN ============= */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .result-wrapper {
+        padding: 35px 25px;
+        border-radius: 18px;
+    }
+
+    .result-header h1 {
+        font-size: 2rem;
+    }
+
+    .prediction-value {
+        font-size: 3.5rem;
+    }
+
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .result-card {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+        min-height: auto;
+    }
+
+    .result-wrapper {
+        padding: 25px 18px;
+    }
+
+    .success-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+    }
+
+    .result-header h1 {
+        font-size: 1.6rem;
+    }
+
+    .result-header p {
+        font-size: 0.95rem;
+    }
+
+    .prediction-value {
+        font-size: 2.5rem;
+    }
+
+    .prediction-label {
+        font-size: 0.9rem;
+    }
+
+    .rating-badge {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .insights-section h3 {
+        font-size: 1.2rem;
+    }
+
+    .insight-card {
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .insight-icon {
+        font-size: 1.5rem;
+    }
+
+    .insight-text h4 {
+        font-size: 0.9rem;
+    }
+
+    .insight-text p {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .result-card {
+        padding: 20px 15px;
+    }
+
+    .action-buttons {
+        gap: 15px;
+    }
+
+    .gradient-blob {
+        filter: blur(60px);
+    }
+
+    .blob-1, .blob-2, .blob-3 {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* ============= ACCESSIBILITY ============= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============= PRINT STYLES ============= */
+@media print {
+    .background-animation {
+        display: none;
+    }
+
+    .result-wrapper {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .action-buttons {
+        display: none;
+    }
+}

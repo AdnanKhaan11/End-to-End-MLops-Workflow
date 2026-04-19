@@ -1,0 +1,465 @@
+/* ============================================
+   ERROR PAGE - LUXURY DESIGN
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ============= CSS VARIABLES ============= */
+:root {
+    --primary-wine: #1a1a2e;
+    --accent-gold: #d4af37;
+    --accent-rose: #c41e3a;
+    --accent-warning: #f39c12;
+    --light-bg: #f8f6f1;
+    --card-bg: #ffffff;
+    --text-dark: #2c2c2c;
+    --text-light: #666666;
+    --border-color: #e8e3db;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --shadow-dark: 0 15px 50px rgba(0, 0, 0, 0.15);
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============= BODY & BACKGROUNDS ============= */
+body {
+    font-family: 'Lato', sans-serif;
+    background: linear-gradient(135deg, var(--light-bg) 0%, #faf8f3 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Animated Background Blobs */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.gradient-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: blob-animation 15s infinite ease-in-out;
+}
+
+.blob-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, #e74c3c, var(--accent-warning));
+    top: -10%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(45deg, var(--primary-wine), #e74c3c);
+    bottom: 10%;
+    right: 5%;
+    animation-delay: 3s;
+}
+
+.blob-3 {
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(45deg, var(--accent-warning), #e74c3c);
+    top: 40%;
+    right: -3%;
+    animation-delay: 6s;
+}
+
+@keyframes blob-animation {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 30px) scale(0.9);
+    }
+}
+
+/* ============= CONTAINER & LAYOUT ============= */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============= ERROR WRAPPER ============= */
+.error-wrapper {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 50px 45px;
+    box-shadow: var(--shadow-dark);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    animation: error-appear 0.8s ease-out;
+}
+
+@keyframes error-appear {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ============= ERROR ICON ============= */
+.error-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, #e74c3c, var(--accent-warning));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    font-weight: bold;
+    animation: error-shake 0.6s cubic-bezier(0.36, 0, 0.66, -0.56);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+@keyframes error-shake {
+    0%, 100% {
+        transform: translateX(0) scale(1);
+    }
+    25% {
+        transform: translateX(-10px) scale(1.05);
+    }
+    75% {
+        transform: translateX(10px) scale(1.05);
+    }
+}
+
+/* ============= ERROR HEADER ============= */
+.error-header {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: header-fade-in 0.8s ease-out 0.3s both;
+}
+
+@keyframes header-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-wine);
+    margin-bottom: 10px;
+}
+
+.error-header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ============= ERROR CARD ============= */
+.error-card {
+    background: linear-gradient(135deg, #fff5f5 0%, #fff9f9 100%);
+    border: 2px solid #ffcccc;
+    border-radius: 18px;
+    padding: 35px;
+    margin-bottom: 40px;
+    animation: card-slide-in 0.8s ease-out 0.4s both;
+}
+
+@keyframes card-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============= ERROR MESSAGE ============= */
+.error-message {
+    margin-bottom: 30px;
+}
+
+.error-message h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #c0392b;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.error-text {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 15px;
+    background: white;
+    border-left: 4px solid #e74c3c;
+    border-radius: 6px;
+    word-break: break-word;
+}
+
+/* ============= SOLUTIONS SECTION ============= */
+.solutions-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.solutions-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--primary-wine);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.solutions-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.solutions-list li {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    padding-left: 10px;
+    line-height: 1.5;
+}
+
+.solutions-list li::before {
+    content: '✓ ';
+    color: #2ecc71;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* ============= ACTION BUTTONS ============= */
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 40px 0;
+    animation: buttons-fade-in 0.8s ease-out 0.5s both;
+}
+
+@keyframes buttons-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn {
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-wine) 0%, var(--accent-rose) 100%);
+    color: white;
+    box-shadow: 0 8px 25px rgba(196, 30, 58, 0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(196, 30, 58, 0.35);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary-wine);
+    border: 2px solid var(--primary-wine);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-wine);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ============= ERROR FOOTER ============= */
+.error-footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+    animation: footer-fade-in 0.8s ease-out 0.6s both;
+}
+
+@keyframes footer-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.error-footer p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+/* ============= RESPONSIVE DESIGN ============= */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .error-wrapper {
+        padding: 35px 25px;
+        border-radius: 18px;
+    }
+
+    .error-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .error-card {
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+        min-height: auto;
+    }
+
+    .error-wrapper {
+        padding: 25px 18px;
+    }
+
+    .error-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.5rem;
+    }
+
+    .error-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .error-header p {
+        font-size: 0.95rem;
+    }
+
+    .error-message h3 {
+        font-size: 1.1rem;
+    }
+
+    .error-text {
+        font-size: 0.9rem;
+    }
+
+    .solutions-section h3 {
+        font-size: 1rem;
+    }
+
+    .solutions-list li {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    .gradient-blob {
+        filter: blur(60px);
+    }
+
+    .blob-1, .blob-2, .blob-3 {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* ============= ACCESSIBILITY ============= */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ============= PRINT STYLES ============= */
+@media print {
+    .background-animation {
+        display: none;
+    }
+
+    .error-wrapper {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+
+    .action-buttons {
+        display: none;
+    }
+}
